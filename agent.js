@@ -1,18 +1,21 @@
 
 
 import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
-import { ChatOpenAI } from "@langchain/openai";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { HumanMessage, AIMessage } from "@langchain/core/messages";
 import { ToolNode } from "@langchain/langgraph/prebuilt";
 import { StateGraph, MessagesAnnotation } from "@langchain/langgraph";
+import {config} from "dotenv"
+
+config();
 
 // Define the tools for the agent to use
-const tools = [new TavilySearchResults({ maxResults: 3 })];
+const tools = [new TavilySearchResults({ maxResults: 3 ,apiKey:process.env.TAVILY_API_KEY})];
 const toolNode = new ToolNode(tools);
 
 // Create a model and give it access to the tools
-const model = new ChatOpenAI({
-  model: "gpt-4o-mini",
+const model = new ChatGoogleGenerativeAI({
+  model: "gemini-2.5-flash",
   temperature: 0,
 }).bindTools(tools);
 
