@@ -9,8 +9,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
+    "@langchain/community": "^0.3.50",
+    "@langchain/core": "^0.3.69",
+    "@langchain/google-genai": "^0.2.16",
+    "@langchain/langgraph": "^0.4.4",
+    "@langchain/openai": "^0.6.7",
     "dotenv": "^16.6.1"
   }
 }
